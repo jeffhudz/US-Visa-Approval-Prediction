@@ -6,7 +6,7 @@ import yaml
 from pandas import DataFrame    
 
 from us_visa.exception import USVisaException
-import us_visa.logger as logger
+import us_visa.logger as logging
 
 
 def read_yaml_file(file_path: str) -> dict:
@@ -24,23 +24,23 @@ def read_yaml_file(file_path: str) -> dict:
     except Exception as e:
         raise USVisaException(e, sys)
     
-    def write_yaml_file(file_path: str, content: object, replace: bool = False) -> None:
-        """
-        Writes a dictionary to a YAML file.
+def write_yaml_file(file_path: str, content: object, replace: bool = False) -> None:
+    """
+    Writes a dictionary to a YAML file.
 
-        Args:
-            file_path (str): The path to the YAML file.
-            data (dict): The data to write to the YAML file.
-        """
-        try:
-            if replace:
-                if os.path.exists(file_path):
-                    os.remove(file_path)
-            
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)
-            with open(file_path, 'w') as yaml_file:
-                yaml.dump(content, yaml_file)
-        except Exception as e:
-            raise USVisaException(e, sys)
+    Args:
+        file_path (str): The path to the YAML file.
+        data (dict): The data to write to the YAML file.
+    """
+    try:
+        if replace:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+        
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        with open(file_path, 'w') as yaml_file:
+            yaml.dump(content, yaml_file)
+    except Exception as e:
+        raise USVisaException(e, sys)
 
-            
+        
