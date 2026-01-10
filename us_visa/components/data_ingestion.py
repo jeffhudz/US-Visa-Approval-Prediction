@@ -57,5 +57,59 @@ class DataIngestion:
         except Exception as e:
             raise USVisaException(e, sys)
 
-    
+    def split_data_as_train_test(self, df: DataFrame) -> None:
+        """
+        Method Name: split_data_as_train_test
+        Description: This method splits the data into training and testing sets.
+        Output: None
+        On Failure: Raise Exception
+        """
+        try:
+            logging.info("Splitting data into train and test sets")
+            train_set, test_set = train_test_split(
+                df,
+                test_size=self.data_ingestion_config.train_test_split_ratio,
+                random_state=42
+            )
+
+            # create ingested directory
+            ingested_dir = os.path.dirname(self.data_ingestion_config.training_file_path)
+            os.makedirs(ingested_dir, exist_ok=True)
+
+            # save train set
+            train_set.to_csv(self.data_ingestion_config.training_file_path, index=False, header=True)
+            logging.info(f"Training data saved at: {self.data_ingestion_config.training_file_path}")
+
+            # save test set
+            test_set.to_csv(self.data_ingestion_config.testing_file_path, index=False, header=True)
+            logging.info(f"Testing data saved at: {self.data_ingestion_config.testing_file_path}")
+
+        except Exception as e:
+            raise USVisaException(e, sys)
+        
+        def initiate_data_ingestion(self) -> DataIngestionArtifact:
+
+            """
+            Method Name: initiate_data_ingestion
+            Description: This method initiates the data ingestion process.
+            Output: DataIngestionArtifact
+            On Failure: Raise Exception
+            """
+            try:
+                logging.info("Initiating data ingestion process")
+                df = self.export_data_into_feature_store()
+                logging.info("Exported data from MongoDBinto feature store")
+                self.split_data_as_train_test(df=df)
+                logging.info("Split data into train and test sets")
+
+                data_ingestion_artifact = DataIngestionArtifact(
+                    training_file_path=self.data_ingestion_config.training_file_path,
+                    testing_file_path=self.data_ingestion_config.testing_file_path
+                )
+
+                logging.info(f"Data Ingestion Artifact: {data_ingestion_artifact}")
+                return data_ingestion_artifact
+
+            except Exception as e:
+                raise USVisaException(e, sys)
                 

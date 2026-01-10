@@ -19,7 +19,8 @@ pip install -r requirements.txt
 
 ## Workflows
 1.Constant
-2.Config
-3.Entity
-4.Component
+2.config_entity
+3.artifact_entity
+4.component
 5.Pipeline
+6.app.py
