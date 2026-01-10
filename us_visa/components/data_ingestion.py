@@ -19,7 +19,7 @@ class DataIngestion:
     On Failure: Raise Exception
     """
 
-    def __init__(self, data_ingestion_config: DataIngestionConfig=DataIngestionArtifact()):
+    def __init__(self, data_ingestion_config: DataIngestionConfig=DataIngestionConfig()):
         """
         :param data_ingestion_config: Configuration for data ingestion
         """
@@ -87,29 +87,29 @@ class DataIngestion:
         except Exception as e:
             raise USVisaException(e, sys)
         
-        def initiate_data_ingestion(self) -> DataIngestionArtifact:
+    def initiate_data_ingestion(self) -> DataIngestionArtifact:
 
-            """
-            Method Name: initiate_data_ingestion
-            Description: This method initiates the data ingestion process.
-            Output: DataIngestionArtifact
-            On Failure: Raise Exception
-            """
-            try:
-                logging.info("Initiating data ingestion process")
-                df = self.export_data_into_feature_store()
-                logging.info("Exported data from MongoDBinto feature store")
-                self.split_data_as_train_test(df=df)
-                logging.info("Split data into train and test sets")
+        """
+        Method Name: initiate_data_ingestion
+        Description: This method initiates the data ingestion process.
+        Output: DataIngestionArtifact
+        On Failure: Raise Exception
+        """
+        try:
+            logging.info("Initiating data ingestion process")
+            df = self.export_data_into_feature_store()
+            logging.info("Exported data from MongoDBinto feature store")
+            self.split_data_as_train_test(df=df)
+            logging.info("Split data into train and test sets")
 
-                data_ingestion_artifact = DataIngestionArtifact(
-                    training_file_path=self.data_ingestion_config.training_file_path,
-                    testing_file_path=self.data_ingestion_config.testing_file_path
-                )
+            data_ingestion_artifact = DataIngestionArtifact(
+                training_file_path=self.data_ingestion_config.training_file_path,
+                testing_file_path=self.data_ingestion_config.testing_file_path
+            )
 
-                logging.info(f"Data Ingestion Artifact: {data_ingestion_artifact}")
-                return data_ingestion_artifact
+            logging.info(f"Data Ingestion Artifact: {data_ingestion_artifact}")
+            return data_ingestion_artifact
 
-            except Exception as e:
-                raise USVisaException(e, sys)
-                
+        except Exception as e:
+            raise USVisaException(e, sys)
+            
