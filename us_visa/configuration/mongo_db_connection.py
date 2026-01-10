@@ -6,7 +6,7 @@ from us_visa.logger import logging
 import certifi
 import os
 import pymongo
-from us_visa.constant import DATABASE_NAME, MONGO_DB_URL_KEY
+from us_visa.constants import DATABASE_NAME, MONGO_DB_URL_KEY
 
 
 ca =certifi.where() 

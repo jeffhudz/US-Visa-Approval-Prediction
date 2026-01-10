@@ -1,5 +1,5 @@
 from us_visa.configuration.mongo_db_connection import MongoDBClient     
-from us_visa.constant import DATABASE_NAME
+from us_visa.constants import DATABASE_NAME
 from us_visa.exception import USVisaException
 import sys
 import pandas as pd 
