@@ -7,7 +7,6 @@ DATABASE_NAME = "US_Visa"
 COLLECTION_NAME = "visa_data"   
 
 MONGO_DB_URL = "mongodb+srv://usvisa_db_user:"
-
 PIPELINE_NAME: str = "usvisa"
 ARTIFACT_DIR: str = "artifact"
 

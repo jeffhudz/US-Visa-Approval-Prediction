@@ -40,7 +40,7 @@ class TrainingPipeline:
             logging.info("Starting data ingestion component of training pipeline")
             logging.info("Getting the data from MongoDB")
             data_ingestion = DataIngestion(data_ingestion_config =self.data_ingestion_config)
-            data_ingestion_artifact = data_ingestion.initiate_data_ingestion
+            data_ingestion_artifact = data_ingestion.initiate_data_ingestion()
             logging.info("Got the train_set and test_set from MongoDB data")
             logging.info("Exited  data ingestion component of training pipeline")
 

@@ -40,9 +40,8 @@ class DataIngestion:
             logging.info("Exporting data from MongoDB to feature store")
             usvisa_data = USVisaData()
             df: DataFrame = usvisa_data.get_collection_as_dataframe(
-                collection_name=self.data_ingestion_config.data_ingestion_collection_name
-            )
-            logging.info(f"Exported data from collection: {self.data_ingestion_config.data_ingestion_collection_name} to feature store")
+                collection_name=self.data_ingestion_config.collection_name)            
+            logging.info(f"Exported data from collection: {self.data_ingestion_config.collection_name} to feature store")
             logging.info(f"Rows and columns in df: {df.shape}")
             # create feature store directory
             feature_store_dir = os.path.dirname(self.data_ingestion_config.feature_store_file_path)
