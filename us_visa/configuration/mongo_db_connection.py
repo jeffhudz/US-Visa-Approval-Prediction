@@ -6,7 +6,7 @@ from us_visa.logger import logging
 import certifi
 import os
 import pymongo
-from us_visa.constant import DATABASE_NAME, MONGO_DB_URL
+from us_visa.constant import DATABASE_NAME, MONGO_DB_URL_KEY
 
 
 ca =certifi.where() 
@@ -24,9 +24,9 @@ class MongoDBClient:
         try:
             if MongoDBClient.client is None:
 
-                mongo_db_url = os.getenv("MONGO_DB_URL")
+                mongo_db_url = os.getenv(MONGO_DB_URL_KEY)
                 if mongo_db_url is None:
-                    raise Exception(f"Environment key: {MONGO_DB_URL} is not set.")
+                    raise Exception(f"Environment key: {MONGO_DB_URL_KEY} is not set.")
                     mongo_db_url = connection_string
                 MongoDBClient.client = pymongo.MongoClient(mongo_db_url, tlsCAFile=ca)
                 self.client = MongoDBClient.client
