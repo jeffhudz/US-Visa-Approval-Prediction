@@ -25,15 +25,15 @@ class DataValidation:
         except Exception as e:
             raise USVisaException(e, sys)
         
-        def validate_number_of_columns(self, dataframe: DataFrame) -> bool:
-            try:
-                status = len(dataframe.columns) == len(self.schema_info['columns'])
-                logging.info(f"Number of columns validation status: {status}")
-               
-                return status   
-            except Exception as e:
-                raise USVisaException(e, sys)
-    
+    def validate_number_of_columns(self, dataframe: DataFrame) -> bool:
+        try:
+            status = len(dataframe.columns) == len(self.schema_info['columns'])
+            logging.info(f"Number of columns validation status: {status}")
+            
+            return status   
+        except Exception as e:
+            raise USVisaException(e, sys)
+
 
     def is_column_exist(self, dataframe: DataFrame) -> bool:
         """
@@ -64,16 +64,14 @@ class DataValidation:
     
     def detect_data_drift(self, base_df: DataFrame, current_df: DataFrame) -> bool:
         try:
-            data_drift_report = Report(metrics=[DataDriftPreset()], include_tests=True)
+            data_drift_report = Report(metrics=[DataDriftPreset()])
 
             data_drift_report.run(reference_data=base_df, current_data=current_df)
-            report = data_drift_report.json()
-            json_report = json.loads(report)
-            report_dict = report.as_dict()
+            report_dict = data_drift_report.as_dict()
 
-            write_yaml_file(file_path=self.data_validation_config.drift_report_file_path,content=report_dict,
-            replace=True )
-           
+            write_yaml_file(file_path=self.data_validation_config.drift_report_file_path,
+            content=report_dict,replace=True)
+
             drift_metrics = report_dict["metrics"][0]["result"]
 
             n_features = drift_metrics["number_of_columns"]
@@ -118,8 +116,10 @@ class DataValidation:
             
             if not test_columns_exist:
                 validation_error_msg += f"Testing data is missing some columns"
+            
+            validation_status = len(validation_error_msg)== 0
 
-            if len(validation_error_msg)== 0:
+            if validation_status:
                  drift_status = self.detect_data_drift(base_df=train_df, current_df=test_df)
                  if drift_status:
                      logging.info("Data drift detected between training and testing data")
@@ -134,7 +134,7 @@ class DataValidation:
            
             
             validation_artifact = DataValidationArtifact(
-                validation_status=drift_status,
+                validation_status=validation_status,
                 message=validation_error_msg,
                 drift_report_file_path=self.data_validation_config.drift_report_file_path
             )

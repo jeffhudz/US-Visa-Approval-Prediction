@@ -1,17 +1,16 @@
 columns:
-  - case_id: Category
-  - continent: Category
-  - country_of_citizenship: Category
-  - education_of_employee: Category
-  - has_job_experience: Category
-  - requires_job_training: Category
-  - no_of_employees: int
-  - yr_of_estab: int
-  - region_of_employment: Category
-  - prevailing_wage: int
-  - unit_of_wage: Category
-  - full_time_position: Category
-  - case_status: Category
+  case_id: Category
+  continent: Category
+  education_of_employee: Category
+  has_job_experience: Category
+  requires_job_training: Category
+  no_of_employees: int
+  yr_of_estab: int
+  region_of_employment: Category
+  prevailing_wage: int
+  unit_of_wage: Category
+  full_time_position: Category
+  case_status: Category
 
 numerical_columns:
   - no_of_employees
@@ -35,7 +34,7 @@ drop_columns:
   - yr_of_estab
 
 # for data transformation
-num_feautures:
+num_columns:
   - no_of_employees
   - prevailing_wage 
   - company_age
