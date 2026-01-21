@@ -47,6 +47,6 @@ MODEL_TRAINER_DIR_NAME: str = "model_trainer"
 MODEL_TRAINER_TRAINED_MODEL_DIR: str = "trained_model"      
 MODEL_TRAINER_MODEL_FILE_NAME: str = "model.pkl"
 MODEL_TRAINER_EXPECTED_SCORE: float = 0.6
-MODEL_TRAINER_MODEL_CONFIG_FILE_PATH: str = os.path.join("config","model_config.yaml")
+MODEL_TRAINER_MODEL_CONFIG_FILE_PATH: str = os.path.join("config","model.yaml")
 
 """Model Evaluation related constant start with MODEL_EVALUATION_VAR_NAME"""
