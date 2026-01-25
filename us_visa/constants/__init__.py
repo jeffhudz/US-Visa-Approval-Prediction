@@ -21,6 +21,10 @@ TRAIN_FILE_NAME: str = "train.csv"
 TEST_FILE_NAME: str = "test.csv"    
 SCHEMA_FILE_PATH: str = os.path.join("config","schema.yaml")
 
+AWS_ACCESS_ID_ENV_KEY = "AWS_ACCESS_KEY_ID"
+AWS_SECRET_ACCESS_KEY_ENV_KEY = "AWS_ACCESS_SECRET_KEY"
+REGION_NAME ="us-east-1"
+
 """Data Ingestion related constant start with DATA_INGESTION_VAR_NAME"""
 DATA_INGESTION_COLLECTION_NAME: str = "visa_data"
 DATA_INGESTION_COLLECTION_DIR_NAME: str = "data_ingestion"
@@ -50,3 +54,13 @@ MODEL_TRAINER_EXPECTED_SCORE: float = 0.6
 MODEL_TRAINER_MODEL_CONFIG_FILE_PATH: str = os.path.join("config","model.yaml")
 
 """Model Evaluation related constant start with MODEL_EVALUATION_VAR_NAME"""
+
+MODEL_EVALUATION_CHANGED_SCORE = 0.02
+MODEL_EVALUATION_DIR_NAME: str = "model_evaluation"
+MODEL_EVALUATION_FILE_NAME: str = "model.pkl"
+MODEL_EVALUATION_REPORT_FILE_NAME: str = "report.yaml"
+MODEL_BUCKET_NAME = "usvisamodel20"
+MODEL_PUSHER_S3_KEY ="model-registry"
+
+APP_HOST = "0.0.0.0"
+APP_PORT = 8000
