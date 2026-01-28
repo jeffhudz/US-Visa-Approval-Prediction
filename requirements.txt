@@ -22,7 +22,6 @@ fastapi
 uvicorn
 jinja2
 python-multipart
--e .
 scikitlearn
 python-dotenv
 mypy_boto3_s3
