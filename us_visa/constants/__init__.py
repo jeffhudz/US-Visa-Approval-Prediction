@@ -62,5 +62,5 @@ MODEL_EVALUATION_REPORT_FILE_NAME: str = "report.yaml"
 MODEL_BUCKET_NAME = "usvisamodel20"
 MODEL_PUSHER_S3_KEY ="model-registry"
 
-APP_HOST = "127.0.0.1"
+APP_HOST = "0.0.0.0"
 APP_PORT = 8000
